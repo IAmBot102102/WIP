@@ -9,3 +9,5 @@ C:\WIP\WIP\WIP\WIP\obj\Debug\netcoreapp3.0\WIP.AssemblyInfoInputs.cache
 C:\WIP\WIP\WIP\WIP\obj\Debug\netcoreapp3.0\WIP.AssemblyInfo.cs
 C:\WIP\WIP\WIP\WIP\obj\Debug\netcoreapp3.0\WIP.dll
 C:\WIP\WIP\WIP\WIP\obj\Debug\netcoreapp3.0\WIP.pdb
+C:\WIP\WIP\WIP\WIP\obj\Debug\netcoreapp3.0\WIP.Form1.resources
+C:\WIP\WIP\WIP\WIP\obj\Debug\netcoreapp3.0\WIP.csproj.GenerateResource.cache
