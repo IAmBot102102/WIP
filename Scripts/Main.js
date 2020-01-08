@@ -12,6 +12,8 @@ setInterval(draw, 10);
 
 function draw(){
     //Loop
+    BackgroundObjects[0].xPosition = Math.round(Math.random() * 800);
+    BackgroundObjects[0].yPosition = Math.round(Math.random() * 600);
     BackgroundObjects[0].draw();
 }
 
