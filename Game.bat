@@ -1,1 +1,0 @@
-start dotnet\dotnet.exe WIP/WIP/bin/Debug/netcoreapp3.0/WIP.dll
