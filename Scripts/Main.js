@@ -2,29 +2,21 @@ var i = 0;
 
 //Variable Setup
 var BackgroundObjects = [];
+jQuery("body").css({"background-color" : "black", "text-align" : "center"});
+jQuery("canvas").css({"border" : "1px solid white", "background-color" : "black"});
+bo = new BackgroundObject();
+BackgroundObjects.push(bo);
 
-function setup(){
-    jQuery("body").css({"background-color" : "black", "text-align" : "center"});
-    createCanvas(800, 600);
-    jQuery("canvas").css({"border" : "1px solid white"});
-    bo = new BackgroundObject();
-    BackgroundObjects.push(bo);
-}
+
+setInterval(draw, 10);
 
 function draw(){
     //Loop
-    
-    BackgroundObjects.forEach( obj => {
-        obj.setXPosition(Math.round(Math.random() * 800));
-        obj.setYPosition(Math.round(Math.random() * 600));
-        obj.draw();
-    });
-    
-    
+    BackgroundObjects[0].draw();
 }
 
 
-function keyPressed(){
+function keyPressed(keyCode){
     // Variable is KeyCode
     // 87 is W
     // 65 is A
@@ -43,7 +35,7 @@ function keyPressed(){
 }
 
 
-function keyReleased(){
+function keyReleased(keyCode){
     // Variable is KeyCode
     // 87 is W
     // 65 is A

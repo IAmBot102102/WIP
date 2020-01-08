@@ -1,7 +1,7 @@
 class BackgroundObject {
     
     constructor(){
-        this.image = "../Images/rock.png";
+        this.image = "rock.png";
         this.xPosition = 0;
         this.yPosition = 0;
         this.width = null;
@@ -33,9 +33,19 @@ class BackgroundObject {
     getYPosition(){
         return this.yPosition;
     }
+    drawFromCenter() {
+        jQuery("canvas").drawImage({
+            source : this.image,
+            x : this.xPosition,
+            y : this.yPosition
+        });
+    }
     draw() {
-        loadImage(this.image, img => {
-            image(img, this.xPosition, this.yPosition);
+        jQuery("canvas").drawImage({
+            source : this.image,
+            x : this.xPosition,
+            y : this.yPosition,
+            fromCenter : false
         });
     }
 
