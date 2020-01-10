@@ -2,26 +2,28 @@
 
 //Variable Setup
 var BackgroundObjects = [];
+var Chunks = [];
 jQuery("body").css({"background-color" : "black", "text-align" : "center"});
 jQuery("canvas").css({"border" : "1px solid white", "background-color" : "black"});
 jQuery(document).keydown(keyPressed);
 jQuery(document).keyup(keyReleased);
 player = new Player();
-for( var i = 0; i < 500; i++){
-    for(var e = 0; e < 500; e++){
+for( var i = 0; i < 50; i++){
+    for(var e = 0; e < 50; e++){
         bo = new BackgroundObject();
         bo.initByImage(i * 64, e * 64, "Images/GrassTexture.png");
-        bo.Scale = 4;
+        bo.Scale = 2;
         BackgroundObjects.push(bo);
     }
 }
-
+Chunks.push(BackgroundObjects);
 player.xWorldPosition = 2000;
 player.yWorldPosition = 1000;
 
 setInterval(draw, 10);
-
+Chunks[0] = BackgroundObjects;
 function draw(){
+
     //Clear Screen
     ClearScreen();
 
@@ -35,11 +37,13 @@ function draw(){
     for (var i = BackgroundObjects.length - 1; i >= 0; i--) {
         BackgroundObjects[i].xPosition = 400 - (player.xWorldPosition - BackgroundObjects[i].xWorldPosition);
         BackgroundObjects[i].yPosition = 300 - (player.yWorldPosition - BackgroundObjects[i].yWorldPosition);
+        
         if(BackgroundObjects[i].xPosition >= -60 && BackgroundObjects[i].xPosition <= 860){
             if(BackgroundObjects[i].yPosition >= -60 && BackgroundObjects[i].yPosition <= 660){
                 BackgroundObjects[i].draw();
             }
         }
+        
     }
     
     player.drawFromCenter();

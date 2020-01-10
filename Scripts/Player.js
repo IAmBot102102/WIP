@@ -26,6 +26,8 @@ class Player{
 		this.direction = this.directions.DOWN;
 		this.health = 100;
 		this.stamina = 100;
+		this.xChunk = 0;
+		this.yChunk = 0;
 
 
 	}
