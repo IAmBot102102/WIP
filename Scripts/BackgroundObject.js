@@ -7,11 +7,13 @@ class BackgroundObject {
         this.width = null;
         this.height = null;
         this.Forces = [];
+        this.yWorldPosition = 0;
+        this.xWorldPosition = 0;
     }
 
     initByImage(x, y, image){
-        this.xPosition = x;
-        this.yPosition = y;
+        this.xWorldPosition = x;
+        this.yWorldPosition = y;
         this.image = image;
     }
 
