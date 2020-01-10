@@ -9,6 +9,7 @@ class BackgroundObject {
         this.Forces = [];
         this.yWorldPosition = 0;
         this.xWorldPosition = 0;
+        this.Scale = 1;
     }
 
     initByImage(x, y, image){
@@ -39,7 +40,8 @@ class BackgroundObject {
         jQuery("canvas").drawImage({
             source : this.image,
             x : this.xPosition,
-            y : this.yPosition
+            y : this.yPosition,
+            scale : this.Scale
         });
     }
     draw() {
@@ -47,6 +49,7 @@ class BackgroundObject {
             source : this.image,
             x : this.xPosition,
             y : this.yPosition,
+            scale : this.Scale,
             fromCenter : false
         });
     }

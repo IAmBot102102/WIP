@@ -7,13 +7,19 @@ jQuery("canvas").css({"border" : "1px solid white", "background-color" : "black"
 jQuery(document).keydown(keyPressed);
 jQuery(document).keyup(keyReleased);
 player = new Player();
-bo = new BackgroundObject();
-bo.initByImage(50, 60, "Images/GrassTexture.png");
-BackgroundObjects.push(bo);
+for( var i = 0; i < 500; i++){
+    for(var e = 0; e < 500; e++){
+        bo = new BackgroundObject();
+        bo.initByImage(i * 64, e * 64, "Images/GrassTexture.png");
+        bo.Scale = 4;
+        BackgroundObjects.push(bo);
+    }
+}
 
+player.xWorldPosition = 2000;
+player.yWorldPosition = 1000;
 
-
-setInterval(draw, 100);
+setInterval(draw, 10);
 
 function draw(){
     //Clear Screen
@@ -27,19 +33,13 @@ function draw(){
 
     //Draw all BackgroundObjects
     for (var i = BackgroundObjects.length - 1; i >= 0; i--) {
-        if(BackgroundObjects[i].xWorldPosition <= player.xWorldPosition){
-            BackgroundObjects[i].xPosition = player.xWorldPosition - BackgroundObjects[i].xWorldPosition;
+        BackgroundObjects[i].xPosition = 400 - (player.xWorldPosition - BackgroundObjects[i].xWorldPosition);
+        BackgroundObjects[i].yPosition = 300 - (player.yWorldPosition - BackgroundObjects[i].yWorldPosition);
+        if(BackgroundObjects[i].xPosition >= -60 && BackgroundObjects[i].xPosition <= 860){
+            if(BackgroundObjects[i].yPosition >= -60 && BackgroundObjects[i].yPosition <= 660){
+                BackgroundObjects[i].draw();
+            }
         }
-        if(BackgroundObjects[i].xWorldPosition >= player.xWorldPosition){
-            BackgroundObjects[i].xPosition = -player.xWorldPosition + BackgroundObjects[i].xWorldPosition;
-        }
-        if(BackgroundObjects[i].yWorldPosition <= player.yWorldPosition){
-            BackgroundObjects[i].yPosition = player.yWorldPosition - BackgroundObjects[i].yWorldPosition;
-        }
-        if(BackgroundObjects[i].yWorldPosition >= player.yWorldPosition){
-            BackgroundObjects[i].yPosition = -player.yWorldPosition + BackgroundObjects[i].yWorldPosition;
-        }
-        BackgroundObjects[i].draw();
     }
     
     player.drawFromCenter();
@@ -76,6 +76,9 @@ function keyPressed(event){
     if(event.originalEvent.code == "KeyD"){
         player.movingRight = true;
     }
+    if(event.originalEvent.code == "ShiftLeft" || event.originalEvent.code == "ShiftRight"){
+        player.sprinting = true;
+    }
     
 
 }
@@ -108,6 +111,9 @@ function keyReleased(event){
     }
     if(event.originalEvent.code == "KeyD"){
         player.movingRight = false;
+    }
+    if(event.originalEvent.code == "ShiftLeft" || event.originalEvent.code == "ShiftRight"){
+        player.sprinting = false;
     }
     
 }

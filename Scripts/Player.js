@@ -11,7 +11,8 @@ class Player{
 		this.decceleractionWater = 4;
 		this.image = "rock.png";
 		this.scale = 5;
-		this.maxVelocity = 20;
+		this.maxVelocity = 8;
+		this.sprinting = false;
 		this.movingUp = false;
 		this.movingDown = false;
 		this.movingLeft = false;
@@ -48,20 +49,36 @@ class Player{
 	}
 	calculateVelocity(){
 		if(this.movingUp == true){
-        	this.yVelocity =  -this.maxVelocity;
+			if(this.sprinting == true){
+				this.yVelocity =  -this.maxVelocity;
+			} else {
+				this.yVelocity =  -this.maxVelocity / 1.5;
+			}
     	} else {
     		if(this.movingDown == true){
-        		this.yVelocity = this.maxVelocity;
+        		if(this.sprinting == true){
+        			this.yVelocity = this.maxVelocity;
+        		} else {
+        			this.yVelocity = this.maxVelocity / 1.5;
+        		}
     		} else {
     			this.yVelocity = 0;
     		}
     	}
     	
     	if(this.movingRight == true){
-        	this.xVelocity = -player.maxVelocity;
+        	if(this.sprinting == true){
+        		this.xVelocity = player.maxVelocity;
+        	} else {
+        		this.xVelocity = player.maxVelocity / 1.5;
+        	}
     	} else {
     		if(this.movingLeft == true){
-    			this.xVelocity = player.maxVelocity;
+    			if(this.sprinting == true){
+    				this.xVelocity = -player.maxVelocity;
+    			} else {
+    				this.xVelocity = -player.maxVelocity / 1.5;
+    			}
     		} else {
     			this.xVelocity = 0;
     		}
