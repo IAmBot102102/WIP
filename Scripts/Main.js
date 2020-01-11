@@ -7,21 +7,25 @@ jQuery("body").css({"background-color" : "black", "text-align" : "center"});
 jQuery("canvas").css({"border" : "1px solid white", "background-color" : "black"});
 jQuery(document).keydown(keyPressed);
 jQuery(document).keyup(keyReleased);
+
+var TempArray = [];
 player = new Player();
-for( var i = 0; i < 50; i++){
-    for(var e = 0; e < 50; e++){
+var loadingInterval = setInterval(loadingScreen, 20);
+var DoneLoading = false;
+var LoadingScreenText = "";
+for( var i = 0; i < 5000; i++){
+    for(var e = 0; e < 5000; e++){
         bo = new BackgroundObject();
         bo.initByImage(i * 64, e * 64, "Images/GrassTexture.png");
-        bo.Scale = 2;
+        bo.Scale = 4;
         BackgroundObjects.push(bo);
     }
 }
-Chunks.push(BackgroundObjects);
-player.xWorldPosition = 2000;
-player.yWorldPosition = 1000;
+DoneLoading = true;
+player.xWorldPosition = 0;
+player.yWorldPosition = 0;
 
-setInterval(draw, 10);
-Chunks[0] = BackgroundObjects;
+
 function draw(){
 
     //Clear Screen
@@ -129,4 +133,24 @@ function ClearScreen(){
         height: 600,
         fromCenter : false
     });
+}
+
+function loadingScreen(){
+    jQuery('canvas').drawText({
+        fillStyle: '#9cf',
+        strokeStyle: '#25a',
+        strokeWidth: 2,
+        x: 150, y: 100,
+        fontSize: 48,
+        fontFamily: 'Verdana, sans-serif',
+        text: 'Loading' + LoadingScreenText
+    });
+    LoadingScreenText += ".";
+    if(LoadingScreenText == "....."){
+        LoadingScreenText = "";
+    }
+    if(DoneLoading == true){
+        clearInterval(loadingInterval);
+        setInterval(draw, 10);
+    }
 }
